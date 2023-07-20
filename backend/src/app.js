@@ -55,6 +55,21 @@ if (fs.existsSync(reactIndexFile)) {
   });
 }
 
+// ... (autres imports)
+
+// Importez votre fichier index.js où les modèles sont initialisés
+const models = require("./models");
+
+// ... (autres configurations)
+
+// Utilisez les modèles dans votre application
+// eslint-disable-next-line no-unused-vars
+const playerManager = models.player;
+// eslint-disable-next-line no-unused-vars
+const teamManager = models.team;
+
+// ... (autres routes et middlewares)
+
 // ready to export
 
 module.exports = app;

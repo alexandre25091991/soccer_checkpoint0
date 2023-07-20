@@ -1,0 +1,94 @@
+/* Import de la police Material Symbols Outlined avec les paramètres de variation */
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+
+body {
+  font-size: 1.2rem;
+  margin: 0; /* Supprimer la marge par défaut du corps */
+  padding: 0; /* Supprimer le padding par défaut du corps */
+}
+
+.InfoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  border-radius: 10px;
+  background-color: #f8f8f8; /* Couleur de fond */
+  background-image: linear-gradient(
+    135deg,
+    #f8f8f8 50%,
+    #f0f0f0 50%
+  ); /* Dégradé */
+  background-size: 200% 100%; /* Réglez la taille du dégradé pour qu'il couvre toute la zone */
+  transition: background-position 0.5s; /* Ajouter une transition pour le dégradé */
+
+  /* Ajouter un style différent pour les appareils mobiles */
+  @media (max-width: 768px) {
+    background-size: 100% 100%; /* Réduire la taille du dégradé sur les appareils mobiles */
+  }
+}
+
+.InfoContainer:hover {
+  background-position: -100% 0; /* Animer le dégradé au survol */
+}
+
+.PlayersListHeaderRow {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+.PlayersListHeaderRow th {
+  padding: 2rem 4rem;
+}
+
+.playerImage {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 100px;
+}
+
+.PlayersContainer {
+  border-radius: 2rem;
+  padding: 2rem;
+  display: grid;
+  justify-items: center;
+  min-width: 75rem;
+  background-color: #f8f8f8;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+}
+
+.PlayersContainer table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.PlayersContainer th {
+  padding: 1.6rem;
+}
+
+.PlayersContainer td {
+  padding: 1.6rem;
+  text-align: center;
+}
+
+.PlayersContainer tr:hover {
+  cursor: pointer;
+  transform: scale(1.05); /* Grossir l'élément survolé */
+  transition: transform 0.3s ease; /* Ajouter une transition pour un effet fluide */
+}
+
+.icon {
+  font-size: 1.3rem;
+}
+
+.PlayersContainer input[type="text"],
+.PlayersContainer select {
+  width: 5rem;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  border-radius: 1rem;
+  background-color: white;
+  border: none;
+  font-size: 0.8rem;
+}
