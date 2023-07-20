@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from "axios";
-// eslint-disable-next-line import/no-duplicates
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { AiOutlineDelete } from "react-icons/ai";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { MdEdit } from "react-icons/md";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
-// eslint-disable-next-line import/no-duplicates
-import { useNavigate } from "react-router-dom"; // Importez useNavigate au lieu de useHistory
 import "./PlayerInfoComponent.css";
 
 function PlayerInfoComponent() {
   const [player, setPlayer] = useState({});
+  // eslint-disable-next-line no-unused-vars
   const [teams, setTeams] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [teamDropdownDisabled, setTeamDropdownDisabled] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const { id } = useParams();
-  const navigate = useNavigate(); // Utilisez useNavigate à la place de useHistory
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPlayerById = async () => {
@@ -49,7 +50,6 @@ function PlayerInfoComponent() {
 
   useEffect(() => {
     if (player.team_id) {
-      // Désactive le menu déroulant si le joueur a une équipe
       setTeamDropdownDisabled(true);
     }
   }, [player]);
@@ -63,11 +63,28 @@ function PlayerInfoComponent() {
   const handleDeletePlayer = async () => {
     try {
       await axios.delete(`http://localhost:5032/player/${id}`);
-      // Une fois que la suppression est effectuée, redirigez vers la page HomePage
       navigate("/players");
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const handleEditPlayer = () => {
+    setIsEditing(true); // Activer le mode édition
+  };
+
+  const handleValidatePlayer = async () => {
+    try {
+      await axios.put(`http://localhost:5032/player/${id}`, player);
+      setIsEditing(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // eslint-disable-next-line no-unused-vars
+  const handleArrowClick = () => {
+    setIsDropdownVisible(!isDropdownVisible);
   };
 
   if (!player.id) {
@@ -101,14 +118,7 @@ function PlayerInfoComponent() {
                 <td>{player.age}</td>
                 <td>{player.position}</td>
                 <td>
-                  {teamDropdownDisabled ? (
-                    <input
-                      type="text"
-                      name="team_id"
-                      value={player.team_id}
-                      disabled
-                    />
-                  ) : (
+                  {isEditing ? (
                     <select
                       className="multipleChoicesMenu"
                       name="team_id"
@@ -121,12 +131,16 @@ function PlayerInfoComponent() {
                         disabled
                         hidden
                       />
-                      {teams.map((team) => (
-                        <option key={team.id} value={team.id}>
-                          {team.id}
-                        </option>
-                      ))}
+                      <option value="1">1</option>
+                      <option value="2">2</option>
                     </select>
+                  ) : (
+                    <input
+                      type="text"
+                      name="team_id"
+                      value={player.team_id}
+                      disabled
+                    />
                   )}
                 </td>
                 <td>
@@ -139,10 +153,13 @@ function PlayerInfoComponent() {
                   />
                 </td>
                 <td>
-                  <MdEdit className="icon" />
+                  <MdEdit className="icon" onClick={handleEditPlayer} />
                 </td>
                 <td>
-                  <IoIosCheckmarkCircleOutline className="icon" />
+                  <IoIosCheckmarkCircleOutline
+                    className="icon"
+                    onClick={handleValidatePlayer}
+                  />
                 </td>
               </tr>
             </tbody>
