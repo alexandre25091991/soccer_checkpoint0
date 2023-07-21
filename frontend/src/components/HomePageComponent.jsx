@@ -41,6 +41,7 @@ function HomePageComponent() {
     <div className="homePageContainer">
       <div className="logoContainer">
         <img src={logoImage} alt="Logo" className="logoImage" />
+        <h1 className="titleOfSite">Wild Code Soccer</h1>
         <img src={logoImage} alt="Logo" className="logoImage" />
       </div>
       <div className="searchBarreContainer">
@@ -55,14 +56,22 @@ function HomePageComponent() {
         <table>
           <thead>
             <tr>
-              <th>Prénom</th>
-              <th>Nom</th>
+              <th>Picture</th>
+              <th>First Name</th>
+              <th>Last Name</th>
               <th>Information</th>
             </tr>
           </thead>
           <tbody>
             {filteredPlayers.map((player) => (
               <tr key={player.id}>
+                <td>
+                  <img
+                    src={player.image}
+                    alt=""
+                    className="playerImageHomeContainer"
+                  />
+                </td>
                 <td>{player.first_name}</td>
                 <td>{player.last_name}</td>
                 <td>

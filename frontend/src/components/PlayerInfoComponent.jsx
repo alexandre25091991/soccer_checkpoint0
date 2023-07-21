@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -98,16 +98,16 @@ function PlayerInfoComponent() {
           <table>
             <thead>
               <tr className="PlayersListHeaderRow">
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Nationalité</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Nationality</th>
                 <th>Age</th>
                 <th>Position</th>
-                <th>Equipe</th>
-                <th>Photo</th>
-                <th>Supprimer</th>
-                <th>Modifier</th>
-                <th>Valider</th>
+                <th>Team</th>
+                <th>Picture</th>
+                <th>Delete</th>
+                <th>Transfert</th>
+                <th>Validate Transfert</th>
               </tr>
             </thead>
             <tbody>
@@ -131,8 +131,8 @@ function PlayerInfoComponent() {
                         disabled
                         hidden
                       />
-                      <option value="1">1</option>
-                      <option value="2">2</option>
+                      <option value="1">PSG</option>
+                      <option value="2">RDM</option>
                     </select>
                   ) : (
                     <input

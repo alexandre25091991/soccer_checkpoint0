@@ -41,9 +41,10 @@ body {
 }
 
 .playerImage {
-  width: 8rem;
-  height: 8rem;
+  width: 5rem;
+  height: 5rem;
   border-radius: 100px;
+  filter: grayscale(100%);
 }
 
 .PlayersContainer {
@@ -62,22 +63,22 @@ body {
 }
 
 .PlayersContainer th {
-  padding: 1.6rem;
+  padding: 2rem;
 }
 
 .PlayersContainer td {
-  padding: 1.6rem;
+  padding: 1.8rem;
   text-align: center;
 }
 
 .PlayersContainer tr:hover {
   cursor: pointer;
-  transform: scale(1.03); /* Grossir l'élément survolé */
+  transform: scale(1.02); /* Grossir l'élément survolé */
   transition: transform 0.3s ease; /* Ajouter une transition pour un effet fluide */
 }
 
 .icon {
-  font-size: 1.3rem;
+  font-size: 1.6rem;
 }
 
 .PlayersContainer input[type="text"],
@@ -89,5 +90,9 @@ body {
   border-radius: 1rem;
   background-color: white;
   border: none;
-  font-size: 0.8rem;
+  font-size: 1.3rem;
+}
+
+select:focus {
+  outline: none;
 }
